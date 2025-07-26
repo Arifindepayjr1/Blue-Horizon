@@ -5,6 +5,9 @@ import logger from "./logger.js";
 import pinoHttp from "pino-http";
 import categoryRouter from "./routes/category.routes.js";
 
+
+
+
 const app  = express();
 const PORT = 3005;
 
