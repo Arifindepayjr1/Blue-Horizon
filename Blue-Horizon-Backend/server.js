@@ -4,14 +4,27 @@ import userRouter from "./routes/users.routes.js";
 import logger from "./logger.js";
 import pinoHttp from "pino-http";
 import categoryRouter from "./routes/category.routes.js";
+import authenticateFirebaseToken from "./middleware/firebaseauth.js";
+import bodyParser from "body-parser";
+import morgan from "morgan";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
+// connect to database
 
-
+mongoose.connect(process.env.MONGODB_URI, {
+    dbName: process.env.MONGODB_DATABASE,
+}).then(() => {
+    console.log("Connected to database");
+}).catch((err) => {
+    console.error("Error connecting to database:", err);
+});
 
 const app  = express();
 const PORT = 3005;
 
-
+app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 app.use(pinoHttp({logger}));
