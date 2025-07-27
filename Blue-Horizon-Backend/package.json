@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "blue-horizon-backend",
   "version": "1.0.0",
   "description": "Blog Website",
@@ -35,4 +36,37 @@
   "devDependencies": {
     "nodemon": "^3.1.10"
   }
+=======
+    "name": "blue-horizon-backend",
+    "version": "1.0.0",
+    "description": "Blog Website",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon server.js",
+        "start": "node server.js",
+        "pretty": "prettier --write \"**/*.{js,ts,json}\""
+    },
+    "keywords": [],
+    "author": "Arifin Depay Jr",
+    "license": "ISC",
+    "dependencies": {
+        "bcryptjs": "^3.0.2",
+        "cloudinary": "^2.7.0",
+        "cors": "^2.8.5",
+        "dotenv": "^17.2.0",
+        "express": "^5.1.0",
+        "multer": "^2.0.2",
+        "multer-storage-cloudinary": "^4.0.0",
+        "mysql2": "^3.14.2",
+        "pino": "^9.7.0",
+        "pino-http": "^10.5.0",
+        "pino-pretty": "^13.0.0"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.10",
+        "prettier": "^3.6.2"
+    }
+>>>>>>> f758a9522d87d516ce5200b064933e5e17b21924
 }
