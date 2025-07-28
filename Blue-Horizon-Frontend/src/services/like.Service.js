@@ -41,7 +41,7 @@ const likeServices = {
                 user_id,
                 post_id
             }
-            const res = await axios.post(`${API_URL}/create` , payLoad);
+            const res = await axios.post(`${API_URL}/like/create` , payLoad);
              if (res.data.status === "SUCCESS") {
                 console.log(`Successfully like Post`);
                 return true;
@@ -52,7 +52,8 @@ const likeServices = {
         }catch (error) {
             console.log(`error: ${error.message}`);
         } 
-        }
+    },
+   
     
 };
 export default likeServices;

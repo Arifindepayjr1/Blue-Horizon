@@ -1,203 +1,162 @@
-import {useContext, useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Loader2, Bookmark, ArrowDownCircle, Heart } from "lucide-react";
 import postServices from "../services/post.Service";
-import { toast } from "react-toastify";
-import UserContext from "../context/UserContext";
 import likeServices from "../services/like.Service";
-import saveLaterServices from "../services/saveLater.service";
+import saveLaterServices from "../services/saveLater.Service";
+import UserContext from "../context/UserContext";
+import { Heart, Bookmark } from "lucide-react";
+import { toast } from "react-toastify";
 
 function Dashboard() {
-  const {user} = useContext(UserContext);
-  const [data, setData] = useState([]);
-  const [visiblePosts, setVisiblePosts] = useState(10);
-  const [loading, setLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [categories, setCategories] = useState(["All"]);
-
-  async function fetchPost() {
-    try {
-      const res = await postServices.getAllPost();
-      if (res) {
-        setData(res || []);
-        const uniqueCategories = ["All", ...new Set(res.map((post) => post.category_name).filter(Boolean))];
-        setCategories(uniqueCategories);
-      } else {
-        setData([]);
-      }
-    } catch (error) {
-      console.error("Failed to fetch posts:", error);
-      setData([]);
-    } finally {
-      setLoading(false);
-    }
-  }
+  const { user } = useContext(UserContext);
+  const [allPosts, setAllPosts] = useState([]);
+  const [displayedPosts, setDisplayedPosts] = useState([]);
+  const [likedPosts, setLikedPosts] = useState([]);
+  const [savedPosts, setSavedPosts] = useState([]);
+  const [page, setPage] = useState(1);
+  const limit = 6;
 
   useEffect(() => {
-    fetchPost();
+    fetchData();
   }, []);
 
-  function loadMore() {
-    setVisiblePosts((prev) => prev + 10);
-  }
-
-  async function handleToggle(post_id, type, currentState) {
+  async function fetchData() {
     try {
-      if (type === "save") {
-        if (currentState) {
-          const res = await saveLaterServices.deleteSaveLaterByPost(user.id , post_id);
-          console.log(res);
-          toast.success("Post removed from saved");
-        } else {
-          await saveLaterServices.createSaveLaterPost(user.id , post_id);
-          toast.success("Post saved");
-        }
-        setData((prevData) =>
-          prevData.map((post) =>
-            post.id === post_id ? { ...post, isSaved: !currentState } : post
-          )
-        );
-      } else if (type === "like") {
-        if (currentState) {
-          await likeServices.unlikePost(user.id , post_id);
-          toast.success("Post unliked");
-        } else {
-          await likeServices.createLikePost(user.id , post_id);
-          toast.success("Post liked");
-        }
-        setData((prevData) =>
-          prevData.map((post) =>
-            post.id === post_id ? { ...post, isLiked: !currentState } : post
-          )
-        );
-      }
-    } catch (error) {
-      toast.error(`Failed to ${type === "save" ? currentState ? "unsave" : "save" : currentState ? "unlike" : "like"} post: ${error.message}`);
+      const postRes = await postServices.getAllPost();
+      const likeRes = await likeServices.getAllLIkePostBySpecificUser(user.id);
+      const saveRes = await saveLaterServices.getSaveLaterBySpecificUser(user.id);
+
+      setAllPosts(postRes);
+      setDisplayedPosts(postRes.slice(0, limit));
+      setLikedPosts(likeRes.map((like) => like.id));
+      setSavedPosts(saveRes.map((save) => save.post_id));
+    } catch (err) {
+      console.error("Error loading data:", err);
     }
   }
 
-  const filteredPosts =
-    selectedCategory === "All"
-      ? data
-      : data.filter((post) => post.category_name === selectedCategory);
+  async function handleLike(postId) {
+    try {
+      if (likedPosts.includes(postId)) {
+        await likeServices.unlikePost(user.id, postId);
+        setLikedPosts((prev) => prev.filter((id) => id !== postId));
+        toast.info("Unliked the post");
+      } else {
+        await likeServices.createLikePost(user.id, postId);
+        setLikedPosts((prev) => [...prev, postId]);
+        toast.success("Liked the post");
+      }
+    } catch (err) {
+      toast.error("Failed to update like");
+    }
+  }
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-white font-sans flex items-center justify-center pt-16">
-        <Loader2 size={24} className="animate-spin text-gray-600" />
-      </div>
-    );
+  async function handleSave(postId) {
+    try {
+      if (savedPosts.includes(postId)) {
+        await saveLaterServices.deleteSaveLaterByPost(user.id, postId);
+        setSavedPosts((prev) => prev.filter((id) => id !== postId));
+        toast.info("Removed from Saved");
+      } else {
+        await saveLaterServices.createSaveLaterPost(user.id, postId);
+        setSavedPosts((prev) => [...prev, postId]);
+        toast.success("Saved for later");
+      }
+    } catch (err) {
+      toast.error("Failed to update save");
+    }
+  }
+
+  function loadMorePosts() {
+    const nextPage = page + 1;
+    const start = page * limit;
+    const more = allPosts.slice(start, start + limit);
+    setDisplayedPosts((prev) => [...prev, ...more]);
+    setPage(nextPage);
+  }
+
+  // Helper function to remove HTML tags from content string
+  function stripHtmlTags(html) {
+    const tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
   }
 
   return (
-    <div className="min-h-screen bg-white font-sans pt-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Category Filter */}
-        <div className="flex justify-start space-x-6 border-b border-gray-300 mb-10 overflow-x-auto">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`py-2 px-4 text-sm font-medium transition-all duration-200 flex items-center space-x-2 hover:bg-gray-100 hover:scale-105 ${
-                selectedCategory === category
-                  ? "text-black border-b-2 border-black"
-                  : "text-gray-600 hover:text-black"
-              }`}
-            >
-              <span>{category}</span>
-            </button>
-          ))}
-        </div>
+    <div className="p-6 max-w-2xl mx-auto">
+      <h1 className="text-3xl font-bold mb-8 text-center">Latest Stories</h1>
 
-        {/* Post Cards */}
-        <div className="w-full">
-          {filteredPosts.length === 0 ? (
-            <h1 className="text-xl font-semibold text-gray-600 text-left">No posts available</h1>
-          ) : (
-            <div className="space-y-16">
-              {filteredPosts.slice(0, visiblePosts).map((post) => (
-                <Link
-                  key={post.id}
-                  to={`/post/${post.id}/content`}
-                  className="block w-full max-w-2xl mx-auto border border-gray-200 rounded-lg shadow-sm pb-10 hover:shadow-lg hover:scale-105 hover:bg-gray-50 transition-transform transition-shadow duration-300"
-                >
-                  <div className="flex flex-col space-y-4 px-6 pt-6">
-                    <img
-                      src={post.thumbnail_url || "https://via.placeholder.com/640x360"}
-                      alt="post thumbnail"
-                      className="w-full h-64 object-cover rounded-lg border border-gray-300"
-                    />
-                    <div className="flex items-center space-x-3 text-sm text-gray-500">
-                      <img
-                        src={post.profile_picture || "https://via.placeholder.com/40"}
-                        alt="user"
-                        className="w-6 h-6 rounded-full object-cover border border-gray-300"
-                      />
-                      <span>{post.username || "Unknown"}</span>
-                      <span>&bull;</span>
-                      <span>
-                        {post.created_at
-                          ? new Date(post.created_at).toLocaleDateString("en-US", {
-                              year: "numeric",
-                              month: "short",
-                              day: "numeric",
-                            })
-                          : "N/A"}
-                      </span>
-                      <span>&bull;</span>
-                      <span>{post.category_name || "Uncategorized"}</span>
-                    </div>
-                    <h2 className="text-3xl font-serif font-bold text-black">{post.title || "Untitled"}</h2>
-                    <div className="flex space-x-3 mt-2">
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleToggle(post.id, "like", post.isLiked);
-                        }}
-                        className={`p-2 rounded-full transition-all duration-300 ${
-                          post.isLiked
-                            ? "bg-red-600 text-white hover:bg-red-700"
-                            : "bg-white border border-gray-300 text-gray-600 hover:bg-gray-100"
-                        }`}
-                        title={post.isLiked ? "Unlike post" : "Like post"}
-                      >
-                        <Heart size={16} className={post.isLiked ? "fill-white" : "fill-none"} />
-                      </button>
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleToggle(post.id, "save", post.isSaved);
-                        }}
-                        className={`p-2 rounded-full transition-all duration-300 ${
-                          post.isSaved
-                            ? "bg-red-600 text-white hover:bg-red-700"
-                            : "bg-white border border-gray-300 text-gray-600 hover:bg-gray-100"
-                        }`}
-                        title={post.isSaved ? "Unsave post" : "Save post"}
-                      >
-                        <Bookmark size={16} className={post.isSaved ? "fill-white" : "fill-none"} />
-                      </button>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+      <div className="flex flex-col gap-6">
+        {displayedPosts.map((post) => (
+          <div
+            key={post.id}
+            className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 border border-gray-200 hover:scale-[1.01]"
+          >
+            <Link to={`/profile/${post.id}/content`}>
+              <img
+                src={post.thumbnail_url}
+                alt={post.title}
+                className="w-full h-64 object-cover rounded-t-2xl"
+              />
+            </Link>
+
+            <div className="p-5">
+              <Link to={`/profile/${post.id}/content`}>
+                <h2 className="text-xl font-semibold text-gray-800 hover:underline">
+                  {post.title}
+                </h2>
+                <p className="text-sm text-gray-600 mt-2 line-clamp-3">
+                  {stripHtmlTags(post.content).slice(0, 150)}...
+                </p>
+              </Link>
+
+              <div className="flex items-center gap-4 mt-4">
+                <img
+                  src={post.profile_picture}
+                  alt="User"
+                  className="w-10 h-10 rounded-full object-cover"
+                />
+                <div>
+                  <p className="text-sm font-medium text-gray-800">{post.username}</p>
+                  <p className="text-xs text-gray-500">
+                    {new Date(post.created_at).toLocaleDateString()}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 mt-5">
+                <Heart
+                  className={`cursor-pointer transition w-6 h-6 ${
+                    likedPosts.includes(post.id)
+                      ? "text-red-500 fill-red-500"
+                      : "text-gray-400"
+                  }`}
+                  onClick={() => handleLike(post.id)}
+                />
+                <Bookmark
+                  className={`cursor-pointer transition w-6 h-6 ${
+                    savedPosts.includes(post.id)
+                      ? "text-blue-500 fill-blue-500"
+                      : "text-gray-400"
+                  }`}
+                  onClick={() => handleSave(post.id)}
+                />
+              </div>
             </div>
-          )}
-        </div>
-
-        {/* Load More Button */}
-        {visiblePosts < filteredPosts.length && (
-          <div className="flex justify-center mt-12">
-            <button
-              onClick={loadMore}
-              className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-100 hover:scale-105 transition-all duration-300"
-            >
-              <ArrowDownCircle size={18} />
-              <span>Load More</span>
-            </button>
           </div>
-        )}
+        ))}
       </div>
+
+      {displayedPosts.length < allPosts.length && (
+        <div className="flex justify-center mt-10">
+          <button
+            onClick={loadMorePosts}
+            className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition text-lg font-medium"
+          >
+            Load more stories
+          </button>
+        </div>
+      )}
     </div>
   );
 }

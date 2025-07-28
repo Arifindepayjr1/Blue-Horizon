@@ -16,7 +16,7 @@ import EditProfile from "../pages/EditProfile.jsx";
 import PostID from "../pages/PostID.jsx";
 
 import Dashboard from "../pages/Dashboard.jsx";
-
+import Content from "../pages/Content.jsx";
 
 function AppRoutes(){
 
@@ -32,6 +32,7 @@ function AppRoutes(){
                             <Route path="save-later" element={<SaveLater/>}/>
                             <Route path="likes" element={<Likes/>}/>
                             <Route path="edit-profile" element={<EditProfile/>}/>
+                            <Route path="content" element={<Content/>}/>
                         </Route>
                         <Route path="/dashboard" element={<Dashboard/>}/>
                     </Route>

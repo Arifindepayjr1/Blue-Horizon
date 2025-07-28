@@ -62,6 +62,32 @@ const postServices = {
             console.log(`Error While Getting All Post ${error.message}`);
             throw error;
         }
+    },
+    createPost: async function(formData){
+        try{
+            const res = await axios.post(`${API_URL}/post/create` , formData , {
+                headers: { "Content-Type": "multipart/form-data" },
+            })
+            if(res.data.status === "SUCCESS"){
+                return res.data.data;
+            }else{
+                return false;
+            }
+        }catch(error){
+            throw new Error(error);
+        }
+    },
+     getPostById: async function(id){
+        try{
+            const res = await axios.get(`${API_URL}/post/${id}`);
+            if(res.data.status === "SUCCESS"){
+                return res.data.data;
+            }else{
+                return false;
+            }
+        }catch(err){
+            throw new Error(err)
+        }
     }
 };
 
