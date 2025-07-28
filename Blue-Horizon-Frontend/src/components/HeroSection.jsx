@@ -1,7 +1,10 @@
 import { PenTool } from "lucide-react";
 import { Link } from "react-router-dom";
-
+import UserContext from "../context/UserContext";
+import { useContext } from "react";
 function HeroSection() {
+
+  const {user} = useContext(UserContext);
   return (
     <section className="w-full h-[80vh] flex items-center justify-center bg-white">
       <div className="text-center max-w-2xl px-6">
@@ -12,7 +15,7 @@ function HeroSection() {
           Discover stories, thinking, and expertise from writers on any topic that matters to you.
         </p>
 
-        <Link to="/write">
+        <Link to={user? "/write" : "/login"} className="mt-8 inline-flex items-center gap-3 px-6 py-3 rounded-md bg-blue-600 text-white font-semibold hover:bg-blue-700 shadow-md hover:shadow-lg transition duration-300 ease-in-out">
           <button className="mt-10 inline-flex items-center gap-2 px-6 py-3 rounded-md bg-gray-900 text-white font-semibold hover:bg-gray-800 shadow-md hover:shadow-lg transition duration-300 ease-in-out">
             <PenTool className="w-5 h-5" />
             <span>Start Writing</span>

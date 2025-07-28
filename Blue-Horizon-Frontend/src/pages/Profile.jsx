@@ -26,7 +26,7 @@ function Profile() {
           console.log(res);
         }
       } catch (error) {
-        navigate("/");
+        navigate("/login");
         console.log(`Error: ${error.message}`);
       }
     }
