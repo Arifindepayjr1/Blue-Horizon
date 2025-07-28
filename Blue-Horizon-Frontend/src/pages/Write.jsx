@@ -108,11 +108,11 @@ function Write() {
         toast.success("Post created successfully!");
         navigate(`/profile/${user.id}/content`);
       } else {
-        toast.error("Post creation failed.");
+        
       }
     } catch (err) {
       console.error(err);
-      toast.error("Error creating post.");
+      
     }
   };
 

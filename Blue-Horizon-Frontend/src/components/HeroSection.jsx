@@ -14,7 +14,7 @@ function HeroSection() {
           Discover stories, thinking, and expertise from writers on any topic that matters to you.
         </p>
 
-        <Link to={user? "/write" : "/login"}>
+        <Link to="/login">
           <button className="mt-10 inline-flex items-center gap-2 px-6 py-3 rounded-md bg-gray-900 text-white font-semibold hover:bg-gray-800 shadow-md hover:shadow-lg transition duration-300 ease-in-out">
             <PenTool className="w-5 h-5" />
             <span>Start Writing</span>
