@@ -1,0 +1,1191 @@
+type: collection.insomnia.rest/5.0
+name: Blue-Horizon
+meta:
+  id: wrk_62ac46986a994d0ebd22b96e2993fd54
+  created: 1753250036654
+  modified: 1753250036654
+  description: ""
+collection:
+  - name: Users
+    meta:
+      id: fld_3108ba31d0534d55ba7b562176173f0c
+      created: 1753377779079
+      modified: 1753377779079
+      sortKey: -1753377779079
+      description: ""
+    children:
+      - url: http://localhost:3005/api/users
+        name: Get All Users
+        meta:
+          id: req_dc13e9bdf7294d90a13bc87aa952d636
+          created: 1753322481908
+          modified: 1753377809088
+          isPrivate: false
+          description: ""
+          sortKey: -1753377804314
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/users/register
+        name: Create Users
+        meta:
+          id: req_47b6cc9659a240f3810e232b465cd21b
+          created: 1753322486707
+          modified: 1753377807826
+          isPrivate: false
+          description: ""
+          sortKey: -1753377804339
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - id: pair_09850b981a2449aabe1d80a0827c79ab
+              name: name
+              value: Jcole
+              description: ""
+              disabled: false
+            - id: pair_89fef9bbd1654d83899bcec72e49ee42
+              name: username
+              value: Jcole123
+              description: ""
+              disabled: false
+            - id: pair_85f111abb6d74fa68488c4a1964fb84b
+              name: email
+              value: jcole123@gmail.com
+              description: ""
+              disabled: false
+            - id: pair_55fa525a912541e9966b9c9859681488
+              name: password
+              value: jcole0123131
+              description: ""
+              disabled: false
+            - id: pair_e249beea297d4ac4b1bb62ee2a61034b
+              name: profilePicture
+              value: ""
+              description: ""
+              disabled: false
+              type: file
+              fileName: C:\Users\ARIFIN\Downloads\images.jpg
+            - id: pair_ccd6d63bfd444f9490f611e14f19f8d7
+              name: bio
+              value: Best rapper in the word
+              description: ""
+              disabled: false
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/users
+        name: Update Users
+        meta:
+          id: req_10a15d937ce9464bb44ab49480b3a61c
+          created: 1753377732564
+          modified: 1753377806884
+          isPrivate: false
+          description: ""
+          sortKey: -1753377804389
+        method: PUT
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/users
+        name: Delete Users
+        meta:
+          id: req_ee3b3545e993473eb673980b17ad26cf
+          created: 1753377747566
+          modified: 1753377804307
+          isPrivate: false
+          description: ""
+          sortKey: -1753377804289
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Category
+    meta:
+      id: fld_6a58a78ba502448f934b3edfa564e643
+      created: 1753377816332
+      modified: 1753377816332
+      sortKey: -1753377816332
+      description: ""
+    children:
+      - url: http://localhost:3005/api/category/create
+        name: Create Category
+        meta:
+          id: req_890a408e14be48459050057437dbca71
+          created: 1753250040450
+          modified: 1753377938285
+          isPrivate: false
+          description: ""
+          sortKey: -1753377934216
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "name": "Programming",
+              "description": "Articles about coding and tech"
+            }
+        parameters:
+          - id: pair_0ec19ddb38614f128987630cb613e5e6
+            name: ""
+            value: ""
+            description: ""
+            disabled: false
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/category/
+        name: Get All Category
+        meta:
+          id: req_ec7347a8bde44f32999b38f7909e7d7e
+          created: 1753377694606
+          modified: 1753377937295
+          isPrivate: false
+          description: ""
+          sortKey: -1753377934266
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/category/
+        name: Update Category
+        meta:
+          id: req_9c6403e38a5a44cba7038244b139608c
+          created: 1753377852740
+          modified: 1753377934090
+          isPrivate: false
+          description: ""
+          sortKey: -1753377934066
+        method: PUT
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/category/
+        name: Delete Category
+        meta:
+          id: req_12123b2b15fa40909bf5bebf7477a881
+          created: 1753377868426
+          modified: 1753377935116
+          isPrivate: false
+          description: ""
+          sortKey: -1753377934166
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Post
+    meta:
+      id: fld_655418cc079a4a589b56542bd22d9a39
+      created: 1753377954146
+      modified: 1753377954146
+      sortKey: -1753377954146
+      description: ""
+    children:
+      - url: http://localhost:3005/api/post/create/
+        name: Create Post
+        meta:
+          id: req_54aa3eeed4bc418e8a03c67946bbdf77
+          created: 1753377958252
+          modified: 1753385429418
+          isPrivate: false
+          description: ""
+          sortKey: -1753377960306
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - id: pair_2a274530f71b40c8be7744772e6a8666
+              name: userId
+              value: "1"
+              description: ""
+              disabled: false
+            - id: pair_1c2979bd32034789aef0946fa25ff021
+              name: categoryId
+              value: "1"
+              description: ""
+              disabled: false
+            - id: pair_71dc735989fe485b914f3387ed6795dc
+              name: title
+              value: My First Blog Everfas
+              description: ""
+              disabled: false
+            - id: pair_ccb49dcbff734bb19737583618ad2267
+              name: content
+              value: aku Jcole on the mixfsafasfasffdsd
+              description: ""
+              disabled: false
+            - id: pair_2167642e0dfc49c99d0403e24cd29f00
+              name: status
+              value: published
+              description: ""
+              disabled: false
+            - id: pair_b10f136b7d9445d78e2cb6826b9beebc
+              name: thumbnail
+              value: ""
+              description: ""
+              disabled: false
+              type: file
+              fileName: C:\Users\ARIFIN\Downloads\images.jpg
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/post/
+        name: Get All Post
+        meta:
+          id: req_6c62fa94d99a49a5b7e87d2d50661843
+          created: 1753378216427
+          modified: 1753385353462
+          isPrivate: false
+          description: ""
+          sortKey: -1753377960406
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/post/1
+        name: Update Post
+        meta:
+          id: req_c3b38690aeae474ea9af17dafe9fcff6
+          created: 1753383290637
+          modified: 1753409857905
+          isPrivate: false
+          description: ""
+          sortKey: -1753377960506
+        method: PUT
+        body:
+          mimeType: multipart/form-data
+          params:
+            - id: pair_4d7f80b1a1764eb89bd1313ec076c1a1
+              name: category_id
+              value: "1"
+              description: ""
+              disabled: false
+            - id: pair_419e318b26904a2185db09c6a2515941
+              name: title
+              value: Best Rapper Alive
+              description: ""
+              disabled: false
+            - id: pair_efe2fafe5a894dbd932d533315f0f6f5
+              name: content
+              value: fHello All my Brotherfdsfsafa
+              description: ""
+              disabled: false
+            - id: pair_8fbac3b9c3f4487ca0f127035bffc978
+              name: status
+              value: published
+              description: ""
+              disabled: false
+            - id: pair_2d50b8da69e5471d87674b7593804f5b
+              name: thumbnail
+              value: ""
+              description: ""
+              disabled: false
+              type: file
+              fileName: C:\Users\ARIFIN\Downloads\Lab-02_ActivityDiagram - Page 6.png
+            - id: pair_90d6dad9ad824ec991aa381cf76f8ba5
+              name: user_id
+              value: "1"
+              description: ""
+              disabled: false
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/post/16
+        name: Delete Post
+        meta:
+          id: req_975e210efaf142e7b774d4f3f887ef71
+          created: 1753385303969
+          modified: 1753385450398
+          isPrivate: false
+          description: ""
+          sortKey: -1753377960606
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Comments
+    meta:
+      id: fld_5f9b979369fa42a28cbc6ac41d7b5ff1
+      created: 1753386107523
+      modified: 1753386117197
+      sortKey: -1753386107523
+      description: ""
+    children:
+      - url: http://localhost:3005/api/comments/create
+        name: Create Comments
+        meta:
+          id: req_c92050f116fc467b8005f2ec18dded6e
+          created: 1753406894852
+          modified: 1753409081842
+          isPrivate: false
+          description: ""
+          sortKey: -1753406901265
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"user_id": 1,
+            	"post_id": 14,
+            	"comment": "I am tdfsahe bestdsADa"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/comments/
+        name: Get All Comments
+        meta:
+          id: req_fc4e5559eb504340a8aeb0e2e2854d48
+          created: 1753408229769
+          modified: 1753409061024
+          isPrivate: false
+          description: ""
+          sortKey: -1753406901365
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/comments/post/14
+        name: Get All Comment By Post ID
+        meta:
+          id: req_40c64fd0960d48e2ab22ea21cbc62df0
+          created: 1753410088756
+          modified: 1753410157478
+          isPrivate: false
+          description: ""
+          sortKey: -1753406901465
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/comments/3
+        name: Update Comment
+        meta:
+          id: req_130873b561fd4f999f47278e36ee1e15
+          created: 1753410436595
+          modified: 1753412059836
+          isPrivate: false
+          description: ""
+          sortKey: -1753406901565
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"user_id": 1,
+            	"post_id": 14,
+            	"comment": "Jcole you are the best rapper alive"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/comments/4
+        name: Delete Comment
+        meta:
+          id: req_336d6a0d71a24e1baf3af2233bb205c6
+          created: 1753414509354
+          modified: 1753427725514
+          isPrivate: false
+          description: ""
+          sortKey: -1753406901665
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: SavedLater
+    meta:
+      id: fld_253cff0a30324a949da341b526430565
+      created: 1753422626356
+      modified: 1753427153766
+      sortKey: -1753422626356
+      description: ""
+    children:
+      - url: http://localhost:3005/api/savedLater/create
+        name: Create Saved Later
+        meta:
+          id: req_cb4a1442feba4d01ae25fa91d4a02a4d
+          created: 1753422628993
+          modified: 1753425586377
+          isPrivate: false
+          description: ""
+          sortKey: -1753422830754
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"user_id" : 1,
+            	"post_id" : 15
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/savedLater/
+        name: Get All Saved Later
+        meta:
+          id: req_eda856c1a1f345ffbdc2d3324fc1d96a
+          created: 1753423898218
+          modified: 1753425580563
+          isPrivate: false
+          description: ""
+          sortKey: -1753422830854
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/savedLater/count-users/
+        name: Get All Saved Later Count Per User
+        meta:
+          id: req_3e4a0fe6368c4096bb0430c0a3dd0b3d
+          created: 1753425410646
+          modified: 1753427518661
+          isPrivate: false
+          description: ""
+          sortKey: -1753422830954
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/savedLater/users/1
+        name: Get All Saved Later Per User
+        meta:
+          id: req_78e315075eb5498b8bc5dd53de75e441
+          created: 1753427149527
+          modified: 1753427181802
+          isPrivate: false
+          description: ""
+          sortKey: -1753422831054
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/savedLater/7
+        name: Delete Saved Later
+        meta:
+          id: req_510a8552c40b4429ba2f28bca5de19a1
+          created: 1753427525818
+          modified: 1753428605972
+          isPrivate: false
+          description: ""
+          sortKey: -1753422831154
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Tags
+    meta:
+      id: fld_ee5c7b1ec5944c02b6a762628f9ed47d
+      created: 1753434510355
+      modified: 1753439739982
+      sortKey: -1753437101463.5
+      description: ""
+    children:
+      - url: http://localhost:3005/api/tags/
+        name: Get All Tags
+        meta:
+          id: req_8b68e14ed6b047718e4da1aabfa1204f
+          created: 1753434513688
+          modified: 1753439700421
+          isPrivate: false
+          description: ""
+          sortKey: -1753434598319
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/tags/create
+        name: Create Tag
+        meta:
+          id: req_c173034892d64f83a9d01782f79150e3
+          created: 1753437812294
+          modified: 1753448045341
+          isPrivate: false
+          description: ""
+          sortKey: -1753434598419
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "Outdoor"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/tags/4
+        name: Update Tag
+        meta:
+          id: req_e9c38f62843b437bb56df90a302884ae
+          created: 1753439692572
+          modified: 1753439751911
+          isPrivate: false
+          description: ""
+          sortKey: -1753434598519
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "Programming"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/tags/4
+        name: New Request
+        meta:
+          id: req_4c4cfca48f854b30a5e34b88f5679efb
+          created: 1753442236399
+          modified: 1753442269353
+          isPrivate: false
+          description: ""
+          sortKey: -1753434598619
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: PostTag
+    meta:
+      id: fld_09af76482273400f9169defada4963ef
+      created: 1753445401466
+      modified: 1753445401466
+      sortKey: -1753445401466
+      description: ""
+    children:
+      - url: http://localhost:3005/api/post-tag/post/14
+        name: Get All Tag By Specific Post Id
+        meta:
+          id: req_d2c5b2386e934fe784b97378442d2c79
+          created: 1753445405209
+          modified: 1753486181847
+          isPrivate: false
+          description: ""
+          sortKey: -1753448002002
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/post-tag/create
+        name: Add Tag to Post
+        meta:
+          id: req_203de0ce1d62421aac1b7f18d8826132
+          created: 1753445407175
+          modified: 1753486207510
+          isPrivate: false
+          description: ""
+          sortKey: -1753448002102
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"post_id": 14,
+            	"tag_id": 6
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/post-tag/delete
+        name: Unlink Post from Tag
+        meta:
+          id: req_9a75919bad1b4b86b451ddb29208015d
+          created: 1753445408330
+          modified: 1753487201954
+          isPrivate: false
+          description: ""
+          sortKey: -1753448002202
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"post_id": 1,
+            	"tag_id": 5
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/post-tag/
+        name: Get All Posts and Tags
+        meta:
+          id: req_99f70c2592b646428d066b0c4fd1a0f1
+          created: 1753445409759
+          modified: 1753448001925
+          isPrivate: false
+          description: ""
+          sortKey: -1753448001902
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/post-tag/post/14
+        name: Update Link tag
+        meta:
+          id: req_c960aa6f6b39410f8fcc4b9c579fa26c
+          created: 1753489500778
+          modified: 1753489600434
+          isPrivate: false
+          description: ""
+          sortKey: -1753448002302
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            		"tag_id": 7
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Likes
+    meta:
+      id: fld_70d1fd267b9f4cb397b79eaf595696fa
+      created: 1753490086630
+      modified: 1753490086630
+      sortKey: -1753490086630
+      description: ""
+    children:
+      - url: http://localhost:3005/api/like
+        name: All User and Like Post
+        meta:
+          id: req_b1ec54b90557474fbe5e6a500c9a1be8
+          created: 1753495309893
+          modified: 1753501697625
+          isPrivate: false
+          description: ""
+          sortKey: -1753501697586
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/like/post/15
+        name: All User Like by Specific Post
+        meta:
+          id: req_c2ad2252da5945a8b0f33bca27b74fed
+          created: 1753500248644
+          modified: 1753501699802
+          isPrivate: false
+          description: ""
+          sortKey: -1753501697686
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/like/create
+        name: Create User like Post
+        meta:
+          id: req_622c633d0e8a4070a9c9954042382c01
+          created: 1753501433584
+          modified: 1753501700704
+          isPrivate: false
+          description: ""
+          sortKey: -1753501697786
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"user_id": 1,
+            	"post_id": 15
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/like/user/1
+        name: All Post Like By Specific User
+        meta:
+          id: req_37e857b7d2a34d63a6690e980b4e59de
+          created: 1753502493986
+          modified: 1753502732755
+          isPrivate: false
+          description: ""
+          sortKey: -1753501697886
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/like/delete
+        name: Unlike Post
+        meta:
+          id: req_c33c4aa7c14a4e5288ea962e5c133051
+          created: 1753503744530
+          modified: 1753503860685
+          isPrivate: false
+          description: ""
+          sortKey: -1753501697986
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"user_id": 1,
+            	"post_id": 15
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: PostImage
+    meta:
+      id: fld_854011b038fa48b6ae97a47dd654e098
+      created: 1753504197477
+      modified: 1753504197477
+      sortKey: -1753504197477
+      description: ""
+    children:
+      - url: http://localhost:3005/api/post-image/post/1
+        name: " Get All Specific Post Image Within Content"
+        meta:
+          id: req_4eadfa563be04c43ab49cd4d741242cc
+          created: 1753512009783
+          modified: 1753515328238
+          isPrivate: false
+          description: ""
+          sortKey: -1753515328206
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/post-image/
+        name: Get All Post Image Within Content
+        meta:
+          id: req_7170f03176ba46fa82bc2b25184d90b5
+          created: 1753512010968
+          modified: 1753515329252
+          isPrivate: false
+          description: ""
+          sortKey: -1753515328306
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/post-image/create
+        name: Create Post Image Within Content
+        meta:
+          id: req_c70db7803414483da6f4dfcb2f6a8420
+          created: 1753513140034
+          modified: 1753515330449
+          isPrivate: false
+          description: ""
+          sortKey: -1753515328406
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - id: pair_8a4fb537a72b4e25821a115fd63c119b
+              name: post_id
+              value: "1"
+              description: ""
+              disabled: false
+            - id: pair_11382c23efe3457db775bc85e5f3ec9b
+              name: caption
+              value: hello sir
+              description: ""
+              disabled: false
+            - id: pair_0e231912557344b99b6acaab461505d1
+              name: content
+              value: ""
+              description: ""
+              disabled: false
+              type: file
+              fileName: C:\Users\ARIFIN\Downloads\images.jpg
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/post-image/1
+        name: Delete Post Image Within Content
+        meta:
+          id: req_296c60f2ea284327b81432ae4663f28c
+          created: 1753514930759
+          modified: 1753515332759
+          isPrivate: false
+          description: ""
+          sortKey: -1753515328506
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3005/api/post-image/1
+        name: Update Post Image Within Cotent
+        meta:
+          id: req_ddd37d0c12ce442584972bce5c41f433
+          created: 1753516261169
+          modified: 1753516279672
+          isPrivate: false
+          description: ""
+          sortKey: -1753515328606
+        method: PUT
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_31e42ee8dedf5e0259360695099e4a87c1fd341c
+    created: 1753250036674
+    modified: 1753250036674
+environments:
+  name: Base Environment
+  meta:
+    id: env_31e42ee8dedf5e0259360695099e4a87c1fd341c
+    created: 1753250036671
+    modified: 1753250036671
+    isPrivate: false

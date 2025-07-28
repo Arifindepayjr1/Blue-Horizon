@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "blue-horizon-18795",
+    "private_key_id": "ded3a2c3da07c9b4d38d906127ef1b403bc9313e",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCe+9EiQNEicOdr\nAuWGnGNsjwLDu0/KVCI2SKozYegItGSIKKMtBiCyxSW0UXAt7rNzr/JWJEVYpXUF\nggFJBTHSu6oBp0P6Zj6YOPM6FtCazqnsZ8TsaPGA2k8X5xStXIugktfRYAMfkiEZ\nZj76yrLqtTRtPU9qGOJh1VtUhcqbRUO7GgJUtA/Bz5Cy2qVEoV5fUe7ZbfBIXysS\nzYnvlU+bLSb+/kaJ9k5Mur96RW8Po0yhVS7JWJaFnQMsuF64BiBsnRwhc5WwlV9P\nbfAPhca6ChoAg7FoTkkEPrmkWSW0PbZSNn131sOgJlnk03Gby1Hovrk9/BCilCs5\nU7GUupGVAgMBAAECggEABR1r7pKwR8/jGiXHNav9ZOY6/AogOI25Zg6zbyDEwtbu\n7xSDn3S1g5rlKiZ+mfO2kU/FV7EmDAKSv8Edgnho0HNaNmBnxvwYInSemq1WO8zP\nWbxC8So1LuSXK9ky6Jr0IQ/oYqOYpiDg8LzB5Pa1h+iZjbQtxGeVjPk8zXzadmFY\nm72W4nFwYZ4335Qxnylp4Svo2XtEvCSUaFVd9cSCr5Qul98rldwrg+6DnJH5rzzP\nzO5eSaZsrUZRFWN8HPtuUsQ7XRcZ0+zXCqsnzLDJbtjguCjmDnLmq6X+gsWPSqo1\n+B/2sX45h2VwmPZSkA+WP9JzcP7WHVJcIkAc9lIpNwKBgQDT8HJYWv2v9gsGAS/d\nZpCp0/30m3HtAzuYY7Mlu6XjyjzneDwhqTyfLZwYYIFDyKmbMBvHgRFQ7x4iesyZ\nSgE3krBRHT5vE49+LKKxQjYnlQU4BZXGTQBhx+rnK6BvXt2sh6vzy5BVstlGAVrC\n6KmTiV0vA2aYXJS2Dp9b0RF0NwKBgQDACQmRkUH1y5LS9aaBxM6XNmzN0W00VPH4\nMjI2qBIXHpkshMilFi1I4RLuXCs30VOIzM9iDzA5bB+GVquqLS3Zd/AOLfplkCH9\nmzZGaLWnkQoI43t1x3k7u7sQmlguUsOzyi9g4iHCiZBXaAD3QiN3auQWh0iKhuV7\nCr4kyDLakwKBgQCDgl3RiZSFDS1F6pKi1TPKzap1j8cfhLQEGUlejpOfRyyHjMnz\nMSpWs1x6m9daEjd7/lwebW4rRFT0nDI8o/khXLpfer/0+LQ/XL8PMsCbyxJT8tM/\nGySzh/OwwhdpQ/pVRlJiktva8YF0uP5ylyAyVjgmJfwRatE0LtqfhJlJ/QKBgQCP\nK+27Xr37oEwWBlmetHmGGWijRnmRo6dHcT0orMPYAtMWcuUY1+DpTg0MMyFxmxoZ\niwEuzb4Zgbg7MxEHbmmZkicimzrtT7lX18luUxDkHmmJ2PgqBo8nbr54EWqfFsub\nlqkeJVogLOm1kO/vaJsCpGnrNe9qgEpFIuxChhQMCwKBgHk+RNUUUTt99SE3nf7h\n8IiGBrL8K6UDid/Yy5N5S5gQsOevAFVTTjz/9lVK750Waw5rjAJ7urVGoqjUSSdr\nf/AWBtP0f6u510ibZC8j3DkzputiyNHpXaRc2ki+VqNDDznEYB1Il+MND5nideIg\nWB5pHo0PYXpGLVe5nuA6gmq0\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-fbsvc@blue-horizon-18795.iam.gserviceaccount.com",
+    "client_id": "110732325454649310150",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40blue-horizon-18795.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+}
