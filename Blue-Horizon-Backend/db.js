@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
@@ -17,6 +18,8 @@ const pool = mysql.createPool({
 
 export default pool;
 =======
+=======
+>>>>>>> 512c5ab3083253659c6abb0e5686b151e59d1708
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
 
@@ -31,4 +34,7 @@ const pool = mysql.createPool({
 });
 
 export default pool;
+<<<<<<< HEAD
 >>>>>>> f758a9522d87d516ce5200b064933e5e17b21924
+=======
+>>>>>>> 512c5ab3083253659c6abb0e5686b151e59d1708

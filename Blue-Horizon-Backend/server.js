@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import express  from "express";
 import cors from "cors";
 import userRouter from "./routes/users.routes.js";
@@ -46,6 +47,8 @@ app.listen(PORT , () => {
     logger.info(`Server is running on http://localhost:${PORT}`);
 })
 =======
+=======
+>>>>>>> 512c5ab3083253659c6abb0e5686b151e59d1708
 import express from "express";
 import cors from "cors";
 import pinoHttp from "pino-http";
@@ -85,4 +88,7 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
     logger.info(`Server is running on http://localhost:${PORT}`);
 });
+<<<<<<< HEAD
 >>>>>>> f758a9522d87d516ce5200b064933e5e17b21924
+=======
+>>>>>>> 512c5ab3083253659c6abb0e5686b151e59d1708
