@@ -34,7 +34,7 @@ const userController = {
                     res.status(200).json({
                         status: status.SUCCESS,
                         message: "Users Registration Successfully",
-                        data: data,
+                        data,
                     });
                     logger.info("Users Registered Successfully With Profile Picture");
                 } else {
@@ -208,6 +208,42 @@ const userController = {
                 message: "Error Occurred While Deleting User",
                 error: err.message,
             });
+        }
+    },
+    usersLogin: async function (req, res) {
+        try {
+            const { email, password } = req.body;
+            if (!email || !password) {
+                logger.warn(`All Fields are required`);
+                return res.status(400).json({
+                    status: status.FAILURE,
+                    message: `All Fields are required`,
+                });
+            } else {
+                const data = await userServices.userLogin(email, password);
+                if (data) {
+                    logger.info(`User Login Successfully`);
+                    res.status(200).json({
+                        status: status.SUCCESS,
+                        message: `User Login Successfully`,
+                        data,
+                    });
+                } else {
+                    logger.warn(`Login Failure`);
+                    res.status(400).json({
+                        status: status.FAILURE,
+                        message: `Login Failure`,
+                    });
+                }
+            }
+        } catch (error) {
+            logger.error(`Error Occur When Trying to Login : ${error.message}`);
+            res.status(500).json({
+                status: status.ERROR,
+                message: `Error Occur When Trying to Login : ${error.message}`,
+                error: error.message,
+            });
+            throw new Error(`Error Occur When Trying to Login : ${error.meessage}`);
         }
     },
 };

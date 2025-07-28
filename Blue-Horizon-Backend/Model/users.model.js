@@ -1,7 +1,7 @@
 import { cloudinary } from "../cloudinary.js";
 import pool from "../db.js";
 import logger from "../logger.js";
-
+import bcrypt from "bcryptjs";
 const userModel = {
     createUser: async function (newUser) {
         const { name, username, email, password, bio, profilePicture, profilePictureId } = newUser;
@@ -168,6 +168,38 @@ const userModel = {
                 err.message
             );
             throw new Error("Database Error");
+        }
+    },
+    userLogin: async function (email, password) {
+        try {
+            const [rows] = await pool.query("SELECT * FROM users WHERE email = ?", [email]);
+            if (rows.length === 0) {
+                return false;
+            }
+
+            const user = rows[0];
+
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                return {
+                    status: "ERROR",
+                    message: "Invalid password",
+                };
+            }
+
+            return {
+                id: user.id,
+                username: user.username,
+                name: user.name,
+                email: user.email,
+                bio: user.bio,
+                profile_picture: user.profile_picture?.url,
+                profile_picture_id: user.profile_picture?.id,
+                role: user.role,
+            };
+        } catch (error) {
+            logger.error(`Error Occur When Trying to login`);
+            throw new Error(error);
         }
     },
 };

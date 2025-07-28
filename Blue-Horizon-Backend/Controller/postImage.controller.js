@@ -71,9 +71,9 @@ const postImageController = {
     },
     createPostImage: async function (req, res) {
         try {
-            const { post_id, caption } = req.body;
+            const { caption } = req.body;
             logger.info(`${post_id} , ${caption}`);
-            if (!post_id || !caption) {
+            if (!caption) {
                 logger.warn(`All Fields are required`);
                 return res.status(400).json({
                     status: status.FAILURE,
@@ -84,7 +84,7 @@ const postImageController = {
                     const image_url = req.file.path;
                     const public_id = req.file.filename;
                     const data = await postImageServices.createPostImage(
-                        post_id,
+
                         caption,
                         image_url,
                         public_id

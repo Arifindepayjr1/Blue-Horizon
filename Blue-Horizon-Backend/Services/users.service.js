@@ -25,6 +25,7 @@ const userServices = {
             const result = await userModel.createUser(newUser);
             if (result) {
                 logger.info("User registered Successfully In The UsersServices");
+
                 return result;
             } else {
                 logger.warn("User registration failed in the UsersServices Duplicate");
@@ -32,6 +33,7 @@ const userServices = {
             }
         } catch (err) {
             logger.error("Error Occurred While Registering User in UsersServices: ", err.message);
+            throw err;
         }
     },
     getAllUsers: async function () {
@@ -94,6 +96,21 @@ const userServices = {
                 `Error Occurred While Deleting User with ID: ${id} in UsersServices: `,
                 err.message
             );
+            throw err;
+        }
+    },
+    userLogin: async function (email, password) {
+        try {
+            const result = await userModel.userLogin(email, password);
+            if (result) {
+                logger.info(`Login Successfully`);
+                return result;
+            } else {
+                logger.warn(`Login Failure`);
+                return false;
+            }
+        } catch (err) {
+            logger.error(`Error Occured When Trying to Login`);
             throw err;
         }
     },

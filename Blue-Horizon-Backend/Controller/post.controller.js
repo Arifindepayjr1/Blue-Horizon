@@ -1,5 +1,4 @@
 import postService from "../Services/post.service.js";
-import userServices from "../Services/users.service.js";
 import logger from "../logger.js";
 
 const status = {
@@ -192,6 +191,72 @@ const postController = {
                 status: status.ERROR,
                 message: `Error Occurred While Deleting Post: ${err.message}`,
                 error: err.message,
+            });
+        }
+    },
+    countUserPost: async function (req, res) {
+        try {
+            const id = req.params.id;
+            if (!id) {
+                logger.warn(`Invalid Id`);
+                return res.status(400).json({
+                    status: status.FAILURE,
+                    message: `Invalid Id`,
+                });
+            } else {
+                const data = await postService.countUserPost(Number(id));
+                if (data) {
+                    logger.info(`Successfully get All Post User`);
+                    res.status(200).json({
+                        status: status.SUCCESS,
+                        message: `Successfully Get All Post User`,
+                        data,
+                    });
+                } else {
+                    logger.warn(`User Not Found Or Not Have  Post`);
+                    res.status(400).json({
+                        status: status.FAILURE,
+                        message: `User Not Found Or Not Have Post`,
+                    });
+                }
+            }
+        } catch (error) {
+            logger.error(`Error Occur When trying to get User Post : ${error.message}`);
+            return res.status(500).json({
+                status: status.ERROR,
+                message: `Error Occur When Trying to Get User Post ${error.message}`,
+            });
+        }
+    },
+    getAllPostByUserId: async function (req, res) {
+        try {
+            const id = req.params.id;
+            if (!id) {
+                logger.warn(`id is invalid`);
+                return res.status(400).json({
+                    status: status.FAILURE,
+                    message: `Id is invalid`,
+                });
+            } else {
+                const data = await postService.getAllPostByUserId(id);
+                if (data) {
+                    return res.status(200).json({
+                        status: status.SUCCESS,
+                        message: `Get Post By User Successfully`,
+                        data: data,
+                    });
+                } else {
+                    return res.status(400).json({
+                        status: status.FAILURE,
+                        message: `User and Post Not found`,
+                    });
+                }
+            }
+        } catch (error) {
+            logger.error(`Error occurred When trying to get All Post By Id ${error.message}`);
+            return res.status(500).json({
+                status: status.ERROR,
+                message: `Error occurred When trying to get All Post By Id ${error.message}`,
             });
         }
     },

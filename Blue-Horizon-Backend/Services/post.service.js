@@ -114,5 +114,32 @@ const postService = {
             throw error;
         }
     },
+    countUserPost: async function (id) {
+        try {
+            const result = await postModel.countUserPost(id);
+            if (result) {
+                logger.info(`Successfully Get All Count User Post `);
+                return result;
+            } else {
+                logger.warn(`UnSuccessfully Get All Count User Post`);
+                return undefined;
+            }
+        } catch (err) {
+            logger.error(`Error Occur When Trying to Get Count User Post : ${err.message}`);
+            throw err;
+        }
+    },
+    getAllPostByUserId: async function (id) {
+        try {
+            const result = postModel.getAllPostByUserId(id);
+            if (result) {
+                return result;
+            } else {
+                return undefined;
+            }
+        } catch (err) {
+            throw err;
+        }
+    },
 };
 export default postService;
