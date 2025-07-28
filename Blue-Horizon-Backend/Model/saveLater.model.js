@@ -97,18 +97,28 @@ const saveLaterModel = {
                 `
       SELECT 
         sl.id AS save_id,
+        sl.saved_at,
+
         p.id AS post_id,
-        p.title,
-        p.content,
-        sl.saved_at
-      FROM 
-        save_later sl
-      JOIN 
-        posts p ON sl.post_id = p.id
-      WHERE 
-        sl.user_id = ?
-      ORDER BY 
-        sl.saved_at DESC
+        p.title AS post_title,
+        p.content AS post_content,
+        p.thumbnail_url AS post_thumbnail_url,
+        p.thumbnail_id AS post_thumbnail_id,
+        p.status AS post_status,
+        p.created_at AS post_created_at,
+        p.updated_at AS post_updated_at,
+
+        u.id AS author_id,
+        u.username AS author_username,
+        u.name AS author_name,
+        u.profile_picture AS author_profile_picture,
+        u.bio AS author_bio
+
+      FROM save_later sl
+      JOIN posts p ON sl.post_id = p.id
+      JOIN users u ON p.user_id = u.id
+      WHERE sl.user_id = ?
+      ORDER BY sl.saved_at DESC
       `,
                 [id]
             );
@@ -121,8 +131,8 @@ const saveLaterModel = {
                 return rows;
             }
         } catch (error) {
-            logger.error(`Error inside getSavedPostsByUserId: ${error.message}`);
-            throw new Error(`Error inside getSavedPostsByUserId: ${error.message}`);
+            logger.error(`Error inside getSavedLaterPerUser: ${error.message}`);
+            throw new Error(`Error inside getSavedLaterPerUser: ${error.message}`);
         }
     },
     deleteSavedLater: async function (id) {
@@ -139,6 +149,20 @@ const saveLaterModel = {
             return result;
         } catch (error) {
             logger.error(`Error in deleteSaveLaterById: ${error.message}`);
+            throw error;
+        }
+    },
+    deleteSavedLaterByPostId: async function (postId, userId) {
+        try {
+            const [result] = await pool.query(
+                `DELETE FROM save_later WHERE post_id = ? AND user_id = ?`,
+                [postId, userId]
+            );
+
+            logger.info(`Deleted saved post with post_id=${postId} and user_id=${userId}`);
+            return result;
+        } catch (error) {
+            logger.error(`Error in deleteSavedLaterByPostId: ${error.message}`);
             throw error;
         }
     },

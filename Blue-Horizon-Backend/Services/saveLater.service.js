@@ -80,5 +80,13 @@ const saveLaterService = {
             throw error;
         }
     },
+    deleteSavedLaterById: async function (postId, userId) {
+        try {
+            const result = await saveLaterModel.deleteSavedLaterByPostId(postId, userId); // ✅ await
+            return result || false;
+        } catch (err) {
+            throw err;
+        }
+    },
 };
 export default saveLaterService;

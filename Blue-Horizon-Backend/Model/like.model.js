@@ -91,16 +91,24 @@ const likeModel = {
             const [rows] = await pool.query(
                 `
       SELECT 
-        posts.id AS post_id,
-        posts.title,
-        posts.content,
-        posts.created_at,
+        posts.*,
+        users.id AS user_id,
+        users.username,
+        users.name,
+        users.email,
+        users.role,
+        users.bio,
+        users.profile_picture,
+        users.profile_picture_id,
+        users.created_at AS user_created_at,
+        users.updated_at AS user_updated_at,
         likes.liked_at
       FROM likes
-      JOIN posts ON likes.post_id = posts.id
+      INNER JOIN posts ON likes.post_id = posts.id
+      INNER JOIN users ON posts.user_id = users.id
       WHERE likes.user_id = ?
       ORDER BY likes.liked_at DESC
-    `,
+      `,
                 [id]
             );
 
@@ -109,13 +117,16 @@ const likeModel = {
                 return [];
             }
 
-            logger.info(`Successfully retrieved liked posts for user ${id}`);
+            logger.info(
+                `Successfully retrieved liked posts with full user and post data for user ${id}`
+            );
             return rows;
         } catch (error) {
-            console.error("Error fetching liked posts for user:", id, error);
+            console.error("Error fetching liked posts with full info for user:", id, error);
             throw error;
         }
     },
+
     unlikePost: async function (user_id, post_id) {
         try {
             const [result] = await pool.query(

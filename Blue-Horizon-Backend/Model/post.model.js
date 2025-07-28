@@ -53,24 +53,34 @@ const postModel = {
     getAllPost: async function () {
         try {
             const [rows] = await pool.query(`
-            SELECT 
-                posts.id,
-                posts.title,
-                posts.content,
-                posts.thumbnail_url,
-                posts.status,
-                posts.created_at,
-                posts.updated_at,
-                users.id AS user_id,
-                users.name AS author_name,
-                users.username,
-                categories.id AS category_id,
-                categories.name AS category_name
-            FROM posts
-            JOIN users ON posts.user_id = users.id
-            LEFT JOIN categories ON posts.category_id = categories.id
-            ORDER BY posts.created_at DESC
-        `);
+      SELECT 
+        posts.id,
+        posts.title,
+        posts.content,
+        posts.thumbnail_url,
+        posts.status,
+        posts.created_at,
+        posts.updated_at,
+
+        users.id AS user_id,
+        users.name AS author_name,
+        users.username,
+        users.email,
+        users.role,
+        users.bio,
+        users.profile_picture,
+        users.profile_picture_id,
+        users.created_at AS user_created_at,
+        users.updated_at AS user_updated_at,
+
+        categories.id AS category_id,
+        categories.name AS category_name
+
+      FROM posts
+      JOIN users ON posts.user_id = users.id
+      LEFT JOIN categories ON posts.category_id = categories.id
+      ORDER BY posts.created_at DESC
+    `);
 
             if (rows.length === 0) {
                 return { message: "No posts found", posts: [] };
@@ -82,6 +92,7 @@ const postModel = {
             throw error;
         }
     },
+
     getPostById: async function (id) {
         try {
             const [rows] = await pool.query("SELECT * FROM posts WHERE id = ?", [id]);
@@ -162,6 +173,47 @@ const postModel = {
         } catch (err) {
             logger.error("Error Occurred While Deleting Post Within Database");
             throw new Error("Error Occur Inside Database");
+        }
+    },
+    countUserPost: async function (id) {
+        try {
+            const [rows] = await pool.query(
+                `SELECT COUNT(*) AS postCount FROM posts WHERE user_id = ?`,
+                [id]
+            );
+            if (rows.length === 0) {
+                logger.warn(`User Post Not Found`);
+                return undefined;
+            } else {
+                logger.info(`Successfully Get All The User Post Count`);
+                return {
+                    user_id: id,
+                    postCount: rows[0].postCount,
+                };
+            }
+        } catch (err) {
+            logger.error(`Error Occur When Trying to Get User Count Post ${err.message}`);
+            throw new Error(err.message);
+        }
+    },
+    getAllPostByUserId: async function (id) {
+        try {
+            const [rows] = await pool.query(
+                `SELECT posts.*, 
+              categories.name AS category_name, 
+              users.username AS username,
+              users.profile_picture AS profile_picture
+       FROM posts 
+       LEFT JOIN categories ON posts.category_id = categories.id 
+       INNER JOIN users ON posts.user_id = users.id
+       WHERE posts.user_id = ? 
+       ORDER BY posts.created_at DESC`,
+                [id]
+            );
+            return rows;
+        } catch (error) {
+            console.error("Error in getAllPostByUserId:", error.message);
+            throw error;
         }
     },
 };

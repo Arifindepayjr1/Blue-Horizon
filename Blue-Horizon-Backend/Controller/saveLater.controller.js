@@ -114,7 +114,7 @@ const saveLaterController = {
                         data: data,
                     });
                 } else {
-                    logger.warning(`User Not Found in SavedLater`);
+                    logger.warn(`User Not Found in SavedLater`);
                     res.status(200).json({
                         status: status.FAILURE,
                         message: `User Not Found In SavedLater`,
@@ -163,6 +163,36 @@ const saveLaterController = {
                 status: status.ERROR,
                 message: `Error occur when trying to Deleting SavedLater Post ${error.message}`,
                 error: error.message,
+            });
+        }
+    },
+    deleteSavedLaterById: async function (req, res) {
+        try {
+            const { postId, userId } = req.body; // ✅ make sure these exist
+            logger.info(`${postId} , ${userId}`);
+            if (!postId || !userId) {
+                return res.status(400).json({
+                    status: "FAILURE",
+                    message: `Invalid postId or userId`,
+                });
+            }
+
+            const result = await saveLaterService.deleteSavedLaterById(postId, userId);
+            if (result) {
+                return res.status(200).json({
+                    status: "SUCCESS",
+                    message: `Delete Successfully`,
+                });
+            } else {
+                return res.status(400).json({
+                    status: "FAILURE",
+                    message: `Delete Unsuccessfully`,
+                });
+            }
+        } catch (error) {
+            return res.status(500).json({
+                status: "ERROR",
+                message: `Error: ${error.message}`,
             });
         }
     },
