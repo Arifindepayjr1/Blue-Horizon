@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import { useContext } from "react";
 function HeroSection() {
+
   const {user} = useContext(UserContext);
   return (
     <section className="w-full h-[80vh] flex items-center justify-center bg-white">
