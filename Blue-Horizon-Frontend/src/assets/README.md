@@ -8,8 +8,8 @@ This folder contains **static assets** used across the application, such as:
 - Default avatars
 - Backgrounds
 - SVGs
-
-These files are typically used for styling or visual content and do not include any code.
+- okay
+  These files are typically used for styling or visual content and do not include any code.
 
 ## Naming Convention
 
